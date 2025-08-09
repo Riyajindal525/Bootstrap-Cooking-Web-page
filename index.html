@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Recipe Helper</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <style>
+    .card {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1.5s ease-in-out;
+      cursor: pointer;
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #fruitSaladDetail {
+      background-image: url("fruitsalad.jpeg");
+      background-size: cover;
+      background: transparent;
+
+      #contact {
+        display: none;
+      }
+
+
+    }
+
+    .recipe-detail {
+      display: none;
+      max-width: 900px;
+      margin: 30px auto;
+      border: 2px solid #4caf50;
+      border-radius: 8px;
+      background: #e8f5e9;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      gap: 20px;
+      align-items: flex-start;
+      position: relative;
+      display: flex;
+    
+    }
+
+   
+    .recipe-detail.hidden {
+      display: none !important;
+    }
+
+    .recipe-detail>button.close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: none;
+      background: transparent;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #4caf50;
+    }
+
+    .recipe-detail img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      max-height: 350px;
+    }
+
+    a h5 {
+      text-decoration: none;
+    }
+    #contact form {
+  background: linear-gradient(to top, #d4edda 0%, #ffffff 100%);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 128, 0, 0.1);
+}
+ #contact {
+    background-color: #e6f2e6; 
+    padding: 40px 0;
+  }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Student Recipes</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#recipes">Recipes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cooking">How to Cook</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="text-light text-center d-flex align-items-center"
+    style="height:100vh; background-image:url('background.jpeg'); background-size:cover; background-position:center;">
+    <div class="container">
+      <h1 class="display-3   fw-bold" style=" color:rgb(92, 149, 6); padding: 20px;">Easy Recipes for Students</h1>
+      <p class="lead mb-4" style=" color:rgb(83 131 11); font-weight: 500;">Learn to cook simple and healthy meals step
+        by step!</p>
+      <a href="#recipes" class="btn btn-warning btn-lg" style="color:white">Start Learning</a>
+    </div>
+  </section>
+
+
+  <!-- Featured Recipes -->
+  <section id="recipes" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5 fw-bold">Featured Recipes</h2>
+      <div class="row g-4">
+
+        <!-- Fruit Salad Card -->
+        <div class="col-md-4" id="fruitSaladCard" style="cursor: pointer;">
+          <div class="card h-100">
+            <img src="fruitsalad.jpeg" class="card-img-top" alt="Fruit Salad"
+              style="height:486px; object-fit: cover;" />
+            <div class="card-body">
+              <h5 class="card-title">Fruit Salad</h5>
+              <p class="card-text">A colorful mix of fresh fruits that is both healthy and tasty.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vegetable Sandwich Card -->
+        <div class="col-md-4" id="veggieSandwichCard" style="cursor: pointer;">
+          <div class="card h-100">
+            <img src="vegetablesandwitch.jpeg" class="card-img-top" alt="Vegetable Sandwich"
+              style="height:486px; object-fit: cover;" />
+            <div class="card-body">
+              <h5 class="card-title">Vegetable Sandwich</h5>
+              <p class="card-text">A quick snack with fresh vegetables and soft bread.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chocolate Milkshake Card -->
+        <div class="col-md-4" id="chocolateMilkshakeCard" style="cursor: pointer;">
+          <div class="card h-100">
+            <img src="chocaltemilshake.jpeg" class="card-img-top" alt="Chocolate Milkshake"
+              style="height:486px; object-fit: cover;" />
+            <div class="card-body">
+              <h5 class="card-title">Chocolate Milkshake</h5>
+              <p class="card-text">A sweet and creamy drink perfect for hot days.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Detail Boxes -->
+      <div id="fruitSaladDetail" class="recipe-detail hidden">
+        <button class="close-btn" aria-label="Close recipe details">&times;</button>
+        <div style="flex: 1;">
+          <h3>Fruit Salad Recipe</h3>
+          <p><strong>Ingredients:</strong> Apple, Banana, Orange, Grapes, Honey, Lemon juice.</p>
+          <p><strong>Method:</strong></p>
+          <ol>
+            <li>Chop all fruits into small pieces.</li>
+            <li>Mix honey and lemon juice to prepare the dressing.</li>
+            <li>Toss all chopped fruits well with the dressing.</li>
+            <li>Serve chilled.</li>
+          </ol>
+        </div>
+        <div style="flex: 1;">
+          <img src="fruitsalad.jpeg" alt="Fruit Salad" />
+        </div>
+      </div>
+
+      <div id="veggieSandwichDetail" class="recipe-detail hidden">
+        <button class="close-btn" aria-label="Close recipe details">&times;</button>
+        <div style="flex: 1;">
+          <h3>Vegetable Sandwich Recipe</h3>
+          <p><strong>Ingredients:</strong> Bread, Tomato, Cucumber, Lettuce, Cheese, Mayonnaise.</p>
+          <p><strong>Method:</strong></p>
+          <ol>
+            <li>Toast the bread slices.</li>
+            <li>Spread mayonnaise on the bread.</li>
+            <li>Add sliced tomato, cucumber, lettuce, and cheese.</li>
+            <li>Assemble the sandwich and serve.</li>
+          </ol>
+        </div>
+        <div style="flex: 1;">
+          <img src="vegetablesandwitch.jpeg" alt="Vegetable Sandwich" />
+        </div>
+      </div>
+
+      <div id="chocolateMilkshakeDetail" class="recipe-detail hidden">
+        <button class="close-btn" aria-label="Close recipe details">&times;</button>
+        <div style="flex: 1;">
+          <h3>Chocolate Milkshake Recipe</h3>
+          <p><strong>Ingredients:</strong> Milk, Chocolate syrup, Ice cream, Whipped cream.</p>
+          <p><strong>Method:</strong></p>
+          <ol>
+            <li>Pour milk into a blender.</li>
+            <li>Add chocolate syrup and ice cream.</li>
+            <li>Blend until smooth.</li>
+            <li>Pour into a glass and top with whipped cream.</li>
+          </ol>
+        </div>
+        <div style="flex: 1;">
+          <img src="chocaltemilshake.jpeg" alt="Chocolate Milkshake" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  <div class="container py-5" id = "cooking">
+    <!-- Popular Categories -->
+
+    <h2 class="mb-5" style="text-align: center; ">Popular Categories</h2>
+    <a href="popular.html">
+      <div class="row g-4">
+        <div class="col-md-3 col-sm-6 card">
+          <div class="card h-100 shadow-sm" style="border:none; transition:0.3s; cursor:pointer;"
+            onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            <img
+              src="https://images.unsplash.com/photo-1497888329096-51c27beff665?fm=jpg&ixid=M3wxMjA3fDB8MHxwcm9maWxlLWxpa2VkfDEzfHx8ZW58MHx8fHx8&ixlib=rb-4.0.3&q=60&w=3000"
+              class="card-img-top" alt="Breakfast" style="height:350px; object-fit:cover;">
+            <div class="card-body text-center">
+              <h5 class="card-title" style="text-decoration: underline white;">Breakfast</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 card">
+          <div class="card h-100 shadow-sm" style="border:none; transition:0.3s; cursor:pointer;"
+            onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            <img
+              src="https://hips.hearstapps.com/hmg-prod/images/marry-me-chickpeas-lead-67d1a3f7133fd.jpeg?crop=1.00xw%3A1.00xh%3B0%2C0&resize=1200%3A%2A"
+              class="card-img-top" alt="Lunch" style="height:350px; object-fit:cover;">
+            <div class="card-body text-center">
+              <h5 class="card-title" style="text-decoration: underline white;">Lunch</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 card">
+          <div class="card h-100 shadow-sm" style="border:none; transition:0.3s; cursor:pointer;"
+            onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            <img
+              src="https://images.immediate.co.uk/production/volatile/sites/30/2022/10/Simple-mushroom-curry-26e3403.jpg"
+              class="card-img-top" alt="Dinner" style="height:350px; object-fit:cover;">
+            <div class="card-body text-center">
+              <h5 class="card-title" style="text-decoration: underline white;">Dinner</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 card">
+          <div class="card h-100 shadow-sm" style="border:none; transition:0.3s; cursor:pointer;"
+            onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            <img src="https://www.vegkit.com/wp-content/uploads/sites/2/2023/09/biscoff_cheesecake_1.jpg"
+              class="card-img-top" alt="Desserts" style="height:350px; object-fit:cover;">
+            <div class="card-body text-center">
+              <h5 class="card-title" style="text-decoration: underline white;">Desserts</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </a>
+
+
+  <section id="quickRecipes" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5 fw-bold">Quick Recipes</h2>
+      <div class="row g-4">
+
+        <!-- Smoothie Card -->
+        <div class="col-md-4" id="smoothieCard" style="cursor: pointer;">
+          <div class="card h-100">
+            <img src="https://pinchmegood.com/wp-content/uploads/2022/12/IMG_6170-600x871.jpg" class="card-img-top"
+              alt="5-Minute Smoothie" style="height:486px; object-fit: cover;" />
+            <div class="card-body">
+              <h5 class="card-title">5-Minute Smoothie</h5>
+              <p class="card-text">A refreshing smoothie ready in minutes.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mug Cake Card -->
+        <div class="col-md-4" id="mugCakeCard" style="cursor: pointer;">
+          <div class="card h-100">
+            <img src="https://whatmollymade.com/wp-content/uploads/2023/06/chocolate-chip-mug-cake-1-2.jpg"
+              class="card-img-top" alt="Microwave Mug Cake" style="height:486px; object-fit: cover;" />
+            <div class="card-body">
+              <h5 class="card-title">Microwave Mug Cake</h5>
+              <p class="card-text">A delicious dessert in just 2 minutes.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Garlic Pasta Card -->
+        <div class="col-md-4" id="garlicPastaCard" style="cursor: pointer;">
+          <div class="card h-100">
+            <img src="https://www.saltandlavender.com/wp-content/uploads/2018/07/creamy-garlic-pasta-51.jpg"
+              class="card-img-top" alt="Quick Garlic Pasta" style="height:486px; object-fit: cover;" />
+            <div class="card-body">
+              <h5 class="card-title">Quick Garlic Pasta</h5>
+              <p class="card-text">Flavourful pasta in under 15 minutes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Boxes -->
+      <div id="smoothieDetail" class="recipe-detail hidden">
+        <button class="close-btn" aria-label="Close recipe details">&times;</button>
+        <div style="flex: 1;">
+          <h3>5-Minute Smoothie Recipe</h3>
+          <p><strong>Ingredients:</strong> Mixed fruits, yogurt, honey, ice cubes.</p>
+          <p><strong>Method:</strong></p>
+          <ol>
+            <li>Add all ingredients into a blender.</li>
+            <li>Blend until smooth.</li>
+            <li>Serve chilled.</li>
+          </ol>
+        </div>
+        <div style="flex: 1;">
+          <img src="https://pinchmegood.com/wp-content/uploads/2022/12/IMG_6170-600x871.jpg" alt="5-Minute Smoothie" />
+        </div>
+      </div>
+
+      <div id="mugCakeDetail" class="recipe-detail hidden">
+        <button class="close-btn" aria-label="Close recipe details">&times;</button>
+        <div style="flex: 1;">
+          <h3>Microwave Mug Cake Recipe</h3>
+          <p><strong>Ingredients:</strong> Flour, sugar, cocoa powder, milk, oil.</p>
+          <p><strong>Method:</strong></p>
+          <ol>
+            <li>Mix all dry ingredients in a mug.</li>
+            <li>Add milk and oil, stir well.</li>
+            <li>Microwave for 2 minutes.</li>
+            <li>Enjoy warm.</li>
+          </ol>
+        </div>
+        <div style="flex: 1;">
+          <img src="https://whatmollymade.com/wp-content/uploads/2023/06/chocolate-chip-mug-cake-1-2.jpg"
+            alt="Microwave Mug Cake" />
+        </div>
+      </div>
+
+      <div id="garlicPastaDetail" class="recipe-detail hidden">
+        <button class="close-btn" aria-label="Close recipe details">&times;</button>
+        <div style="flex: 1;">
+          <h3>Quick Garlic Pasta Recipe</h3>
+          <p><strong>Ingredients:</strong> Pasta, garlic, olive oil, parmesan, herbs.</p>
+          <p><strong>Method:</strong></p>
+          <ol>
+            <li>Boil pasta until al dente.</li>
+            <li>Sauté garlic in olive oil.</li>
+            <li>Toss pasta with garlic oil, parmesan, and herbs.</li>
+            <li>Serve hot.</li>
+          </ol>
+        </div>
+        <div style="flex: 1;">
+          <img src="https://www.saltandlavender.com/wp-content/uploads/2018/07/creamy-garlic-pasta-51.jpg"
+            alt="Quick Garlic Pasta" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- Nutrition Corner -->
+  <div class="container py-5">
+    <h2 class="mb-4" style="text-align: center;">Health & Nutrition Corner</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-sm-6 card" id="cardBerries" style="cursor: pointer;">
+        <div class="card h-100 shadow-sm" style="border:none; transition:0.3s;"
+          onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+          <img
+            src="https://thumbs.dreamstime.com/b/mixed-summer-berries-blue-plate-blueberries-raspberries-redcurrant-blackcurrant-mulberries-close-up-food-photography-362778195.jpg"
+            class="card-img-top" alt="Berries" style="height:250px; object-fit:cover;">
+          <div class="card-body">
+            <h5 class="card-title">Benefits of Eating Berries</h5>
+            <p class="card-text">Packed with antioxidants, berries are great for your heart.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 card" id="cardChickpeas" style="cursor: pointer;">
+        <div class="card h-100 shadow-sm" style="border:none; transition:0.3s;"
+          onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+          <img src="https://vegancocotte.com/wp-content/uploads/2025/01/Moroccan-Chickpea-Stew-2.jpg"
+            class="card-img-top" alt="Protein" style="height:250px; object-fit:cover;">
+          <div class="card-body">
+            <h5 class="card-title">Protein in Chickpeas</h5>
+            <p class="card-text">Chickpeas are a great plant-based protein source.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Box (hidden by default) -->
+    <div id="nutritionInfo" class="recipe-detail hidden">
+      <button class="close-btn" aria-label="Close recipe details">&times;</button>
+      <h3>Detailed Health & Nutrition Info</h3>
+      <p><strong>1. Antioxidants in Berries:</strong> Berries like blueberries, raspberries, and blackcurrants are rich
+        in antioxidants that help reduce oxidative stress, improve heart health, and support the immune system.</p>
+      <p><strong>2. Protein in Chickpeas:</strong> Chickpeas provide a rich source of plant-based protein, fiber, and
+        essential nutrients that help in muscle repair, digestion, and maintaining energy levels.</p>
+      <p><strong>3. Vitamins & Minerals:</strong> Both berries and chickpeas contain important vitamins such as vitamin
+        C, vitamin K, and minerals like iron, magnesium, and potassium that support overall wellness.</p>
+      <p><strong>4. Dietary Fiber:</strong> The high fiber content in these foods helps regulate blood sugar, promotes
+        satiety, and supports digestive health.</p>
+      <p><strong>5. Anti-inflammatory Properties:</strong> Regular consumption may reduce inflammation and lower risk of
+        chronic diseases.</p>
+    </div>
+  </div>
+
+  <!-- User Submitted Recipes Section -->
+  <section id="userRecipes" class="container py-5">
+    <h2 class="mb-4 text-center">User Submitted Recipes</h2>
+    <p class="text-center mb-4">Have a recipe to share? <br>Submit your favourite dishes <a href="#contact">Contact
+        Us</a>.</p>
+
+    <div class="row g-4">
+      <!-- Grandma’s Special Curry Card -->
+      <div class="col-md-4 col-sm-6">
+        <div class="card h-100 shadow-sm" style="border:none; transition:0.3s; cursor:pointer;"
+          onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+          <img src="https://www.journee-mondiale.com/en/wp-content/uploads/2025/04/2025-04-12-16-04-35_.webp"
+            class="card-img-top" alt="Grandma’s Special Curry" style="height:200px; object-fit:cover;">
+          <div class="card-body">
+            <h5 class="card-title">Grandma’s Special Curry</h5>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chocolate Fudge Brownies Card -->
+      <div class="col-md-4 col-sm-6">
+        <div class="card h-100 shadow-sm" style="border:none; transition:0.3s; cursor:pointer;"
+          onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+          <img src="https://thefoodcharlatan.com/wp-content/uploads/2012/12/Nanas-Famous-Fudge-Brownies.jpg"
+            class="card-img-top" alt="Chocolate Fudge Brownies" style="height:200px; object-fit:cover;">
+          <div class="card-body">
+            <h5 class="card-title">Chocolate Fudge Brownies</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail Boxes -->
+    <div id="grandmaCurryDetail" class="recipe-detail hidden" style="display:flex; gap:20px; margin-top:30px;">
+      <button class="close-btn" aria-label="Close recipe details"
+        style="font-size:24px; background:none; border:none; cursor:pointer;">&times;</button>
+      <div style="flex: 1;">
+        <h3>Grandma’s Special Curry Recipe</h3>
+        <p><strong>Ingredients:</strong> Mixed vegetables, spices, coconut milk, garlic, ginger.</p>
+        <p><strong>Method:</strong></p>
+        <ol>
+          <li>Sauté garlic and ginger in oil.</li>
+          <li>Add mixed vegetables and spices.</li>
+          <li>Pour coconut milk and simmer.</li>
+          <li>Cook until vegetables are tender.</li>
+          <li>Serve hot with rice or bread.</li>
+        </ol>
+      </div>
+      <div style="flex: 1;">
+        <img src="https://www.journee-mondiale.com/en/wp-content/uploads/2025/04/2025-04-12-16-04-35_.webp"
+          alt="Grandma’s Special Curry" style="width:100%; height:auto; object-fit:cover;">
+      </div>
+    </div>
+
+    <div id="fudgeBrowniesDetail" class="recipe-detail hidden" style="display:flex; gap:20px; margin-top:30px;">
+      <button class="close-btn" aria-label="Close recipe details"
+        style="font-size:24px; background:none; border:none; cursor:pointer;">&times;</button>
+      <div style="flex: 1;">
+        <h3>Chocolate Fudge Brownies Recipe</h3>
+        <p><strong>Ingredients:</strong> Dark chocolate, butter, sugar, eggs, flour, cocoa powder.</p>
+        <p><strong>Method:</strong></p>
+        <ol>
+          <li>Melt chocolate and butter together.</li>
+          <li>Whisk sugar and eggs until fluffy.</li>
+          <li>Combine with chocolate mixture.</li>
+          <li>Add flour and cocoa powder.</li>
+          <li>Bake at 180°C for 25 minutes.</li>
+          <li>Cool, cut, and serve.</li>
+        </ol>
+      </div>
+      <div style="flex: 1;">
+        <img src="https://thefoodcharlatan.com/wp-content/uploads/2012/12/Nanas-Famous-Fudge-Brownies.jpg"
+          alt="Chocolate Fudge Brownies" style="width:100%; height:auto; object-fit:cover;">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Trending Recipes Section -->
+  <section id="trendingRecipes" class="container py-5">
+    <h2 class="mb-4 text-center">Trending Recipes</h2>
+    <div class="row g-4">
+      <!-- Vegan Buddha Bowl Card -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card h-100 shadow-sm" style="border:none; transition:0.3s; cursor:pointer;"
+          onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+          <img src="https://eatwithclarity.com/wp-content/uploads/2020/03/vegan-buddha-bowl.jpg" class="card-img-top"
+            alt="Vegan Buddha Bowl" style="height:200px; object-fit:cover;">
+          <div class="card-body">
+            <h5 class="card-title">Vegan Buddha Bowl</h5>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avocado Toast Card -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card h-100 shadow-sm" style="border:none; transition:0.3s; cursor:pointer;"
+          onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+          <img src="https://www.dinneratthezoo.com/wp-content/uploads/2018/12/avocado-toast-14.jpg" class="card-img-top"
+            alt="Avocado Toast" style="height:200px; object-fit:cover;">
+          <div class="card-body">
+            <h5 class="card-title">Avocado Toast</h5>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blueberry Pancakes Card -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card h-100 shadow-sm" style="border:none; transition:0.3s; cursor:pointer;"
+          onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+          <img
+            src="https://www.culinaryhill.com/wp-content/uploads/2023/09/Blueberry-Pancakes-Culinary-Hill-1200x800-1-500x500.jpg"
+            class="card-img-top" alt="Blueberry Pancakes" style="height:200px; object-fit:cover;">
+          <div class="card-body">
+            <h5 class="card-title">Blueberry Pancakes</h5>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chocolate Lava Cake Card -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card h-100 shadow-sm" style="border:none; transition:0.3s; cursor:pointer;"
+          onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+          <img src="https://www.melskitchencafe.com/wp-content/uploads/2023/01/updated-lava-cakes7.jpg"
+            class="card-img-top" alt="Chocolate Lava Cake" style="height:200px; object-fit:cover;">
+          <div class="card-body">
+            <h5 class="card-title">Chocolate Lava Cake</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail Boxes -->
+    <div id="veganBuddhaBowlDetail" class="recipe-detail hidden" style="display:flex; gap:20px; margin-top:30px;">
+      <button class="close-btn" aria-label="Close recipe details"
+        style="font-size:24px; background:none; border:none; cursor:pointer;">&times;</button>
+      <div style="flex: 1;">
+        <h3>Vegan Buddha Bowl Recipe</h3>
+        <p><strong>Ingredients:</strong> Quinoa, Chickpeas, Avocado, Mixed veggies, Tahini sauce.</p>
+        <p><strong>Method:</strong></p>
+        <ol>
+          <li>Cook quinoa and let it cool.</li>
+          <li>Roast chickpeas with spices.</li>
+          <li>Chop avocado and veggies.</li>
+          <li>Mix everything and drizzle tahini sauce.</li>
+          <li>Serve fresh.</li>
+        </ol>
+      </div>
+      <div style="flex: 1;">
+        <img src="https://eatwithclarity.com/wp-content/uploads/2020/03/vegan-buddha-bowl.jpg" alt="Vegan Buddha Bowl"
+          style="width:100%; height:auto; object-fit:cover;">
+      </div>
+    </div>
+
+    <div id="avocadoToastDetail" class="recipe-detail hidden" style="display:flex; gap:20px; margin-top:30px;">
+      <button class="close-btn" aria-label="Close recipe details"
+        style="font-size:24px; background:none; border:none; cursor:pointer;">&times;</button>
+      <div style="flex: 1;">
+        <h3>Avocado Toast Recipe</h3>
+        <p><strong>Ingredients:</strong> Bread, Avocado, Lemon juice, Chili flakes, Salt, Pepper.</p>
+        <p><strong>Method:</strong></p>
+        <ol>
+          <li>Toast the bread slices.</li>
+          <li>Mash avocado with lemon juice, salt, and pepper.</li>
+          <li>Spread the mixture on toast.</li>
+          <li>Sprinkle chili flakes on top.</li>
+          <li>Serve immediately.</li>
+        </ol>
+      </div>
+      <div style="flex: 1;">
+        <img src="https://www.dinneratthezoo.com/wp-content/uploads/2018/12/avocado-toast-14.jpg" alt="Avocado Toast"
+          style="width:100%; height:auto; object-fit:cover;">
+      </div>
+    </div>
+
+    <div id="blueberryPancakesDetail" class="recipe-detail hidden" style="display:flex; gap:20px; margin-top:30px;">
+      <button class="close-btn" aria-label="Close recipe details"
+        style="font-size:24px; background:none; border:none; cursor:pointer;">&times;</button>
+      <div style="flex: 1;">
+        <h3>Blueberry Pancakes Recipe</h3>
+        <p><strong>Ingredients:</strong> Flour, Milk, Eggs, Blueberries, Baking powder, Sugar.</p>
+        <p><strong>Method:</strong></p>
+        <ol>
+          <li>Mix flour, baking powder, and sugar.</li>
+          <li>Whisk milk and eggs, combine with dry mix.</li>
+          <li>Fold in blueberries.</li>
+          <li>Cook on hot griddle until golden.</li>
+          <li>Serve with syrup or honey.</li>
+        </ol>
+      </div>
+      <div style="flex: 1;">
+        <img
+          src="https://www.culinaryhill.com/wp-content/uploads/2023/09/Blueberry-Pancakes-Culinary-Hill-1200x800-1-500x500.jpg"
+          alt="Blueberry Pancakes" style="width:100%; height:auto; object-fit:cover;">
+      </div>
+    </div>
+
+    <div id="chocolateLavaCakeDetail" class="recipe-detail hidden" style="display:flex; gap:20px; margin-top:30px;">
+      <button class="close-btn" aria-label="Close recipe details"
+        style="font-size:24px; background:none; border:none; cursor:pointer;">&times;</button>
+      <div style="flex: 1;">
+        <h3>Chocolate Lava Cake Recipe</h3>
+        <p><strong>Ingredients:</strong> Dark chocolate, Butter, Eggs, Sugar, Flour.</p>
+        <p><strong>Method:</strong></p>
+        <ol>
+          <li>Melt chocolate and butter together.</li>
+          <li>Whisk eggs and sugar until fluffy.</li>
+          <li>Combine chocolate mixture with eggs.</li>
+          <li>Add flour gently.</li>
+          <li>Bake at 220°C for 12 mins.</li>
+          <li>Serve warm with ice cream.</li>
+        </ol>
+      </div>
+      <div style="flex: 1;">
+        <img src="https://www.melskitchencafe.com/wp-content/uploads/2023/01/updated-lava-cakes7.jpg"
+          alt="Chocolate Lava Cake" style="width:100%; height:auto; object-fit:cover;">
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4 fw-bold">Contact Us</h2>
+      <form id="contactForm" class="mx-auto" style="max-width: 500px;">
+        <div class="mb-3">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-control" placeholder="Enter your name" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Your Email</label>
+          <input type="email" class="form-control" placeholder="Enter your email" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Message</label>
+          <textarea class="form-control" rows="4" placeholder="Type your message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-success text-white text-center py-3">
+    &copy; 2025 Student Recipes | Learn Cooking the Easy Way
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+
+    // Scroll animation for cards
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.card').forEach((card) => {
+        const cardTop = card.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (cardTop < windowHeight - 50) {
+          card.classList.add('show');
+        }
+      });
+    });
+    // Trigger on load in case some cards are already visible
+    window.dispatchEvent(new Event('scroll'));
+
+    const cards = document.querySelectorAll('#recipes .card');
+    const detailMap = {
+      "Fruit Salad": "fruitSaladDetail",
+      "Vegetable Sandwich": "veggieSandwichDetail",
+      "Chocolate Milkshake": "chocolateMilkshakeDetail"
+    };
+
+    function hideAllDetails() {
+      Object.values(detailMap).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.add('hidden');
+        }
+      });
+    }
+
+    cards.forEach(card => {
+      const title = card.querySelector('.card-title');
+      if (title) {
+        const detailId = detailMap[title.textContent.trim()];
+        if (detailId) {
+          card.style.cursor = 'pointer';
+          card.addEventListener('click', () => {
+            const detailDiv = document.getElementById(detailId);
+            if (!detailDiv) return;
+
+            if (detailDiv.classList.contains('hidden')) {
+              hideAllDetails();
+              detailDiv.classList.remove('hidden');
+              detailDiv.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              detailDiv.classList.add('hidden');
+            }
+          });
+        }
+      }
+    });
+
+    // Close button handler for recipe detail boxes
+    document.querySelectorAll('.recipe-detail .close-btn').forEach(btn => {
+      btn.style.cursor = 'pointer';
+      btn.addEventListener('click', (e) => {
+        e.target.parentElement.classList.add('hidden');
+      });
+    });
+
+
+
+
+
+
+    const quickCards = document.querySelectorAll('#quickRecipes .card');
+    const quickDetailMap = {
+      "5-Minute Smoothie": "smoothieDetail",
+      "Microwave Mug Cake": "mugCakeDetail",
+      "Quick Garlic Pasta": "garlicPastaDetail"
+    };
+
+    function hideAllQuickDetails() {
+      Object.values(quickDetailMap).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      });
+    }
+
+    quickCards.forEach(card => {
+      const title = card.querySelector('.card-title');
+      if (title) {
+        const detailId = quickDetailMap[title.textContent.trim()];
+        if (detailId) {
+          card.style.cursor = 'pointer';
+          card.addEventListener('click', () => {
+            const detailDiv = document.getElementById(detailId);
+            if (!detailDiv) return;
+
+            if (detailDiv.classList.contains('hidden')) {
+              hideAllQuickDetails();
+              detailDiv.classList.remove('hidden');
+              detailDiv.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              detailDiv.classList.add('hidden');
+            }
+          });
+        }
+      }
+    });
+
+    // Close buttons inside quick recipe details
+    document.querySelectorAll('#quickRecipes .recipe-detail .close-btn').forEach(btn => {
+      btn.style.cursor = 'pointer';
+      btn.addEventListener('click', (e) => {
+        e.target.parentElement.classList.add('hidden');
+      });
+    });
+
+
+    const trendingCards = document.querySelectorAll('.container.py-5 .row.g-4 > .col-md-3 .card');
+    // Or more specifically, if your trending container has a unique ID/class, use that selector instead for better precision.
+
+    const trendingDetailMap = {
+      "Vegan Buddha Bowl": "veganBuddhaBowlDetail",
+      "Avocado Toast": "avocadoToastDetail",
+      "Blueberry Pancakes": "blueberryPancakesDetail",
+      "Chocolate Lava Cake": "chocolateLavaCakeDetail"
+    };
+
+    function hideAllTrendingDetails() {
+      Object.values(trendingDetailMap).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      });
+    }
+
+    trendingCards.forEach(card => {
+      const title = card.querySelector('.card-title');
+      if (title) {
+        const detailId = trendingDetailMap[title.textContent.trim()];
+        if (detailId) {
+          card.style.cursor = 'pointer';
+          card.addEventListener('click', () => {
+            const detailDiv = document.getElementById(detailId);
+            if (!detailDiv) return;
+
+            if (detailDiv.classList.contains('hidden')) {
+              hideAllTrendingDetails();
+              detailDiv.classList.remove('hidden');
+              detailDiv.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              detailDiv.classList.add('hidden');
+            }
+          });
+        }
+      }
+    });
+
+    // Close buttons inside trending recipe details
+    document.querySelectorAll('.recipe-detail .close-btn').forEach(btn => {
+      btn.style.cursor = 'pointer';
+      btn.addEventListener('click', (e) => {
+        e.target.parentElement.classList.add('hidden');
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Cards selectors
+      const grandmaCard = document.querySelector('img[alt="Grandma’s Special Curry"]').closest('.col-md-4');
+      const fudgeCard = document.querySelector('img[alt="Chocolate Fudge Brownies"]').closest('.col-md-4');
+
+      // Detail boxes
+      const grandmaDetail = document.getElementById('grandmaCurryDetail');
+      const fudgeDetail = document.getElementById('fudgeBrowniesDetail');
+
+      // Close buttons
+      const closeButtons = document.querySelectorAll('.recipe-detail .close-btn');
+
+      // Function to hide all details
+      function hideAllDetails() {
+        grandmaDetail.classList.add('hidden');
+        fudgeDetail.classList.add('hidden');
+      }
+
+      // Show grandma curry details on click
+      grandmaCard.addEventListener('click', () => {
+        if (grandmaDetail.classList.contains('hidden')) {
+          hideAllDetails();
+          grandmaDetail.classList.remove('hidden');
+          grandmaDetail.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          grandmaDetail.classList.add('hidden');
+        }
+      });
+
+      // Show fudge brownies details on click
+      fudgeCard.addEventListener('click', () => {
+        if (fudgeDetail.classList.contains('hidden')) {
+          hideAllDetails();
+          fudgeDetail.classList.remove('hidden');
+          fudgeDetail.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          fudgeDetail.classList.add('hidden');
+        }
+      });
+
+      // Close button functionality
+      closeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          hideAllDetails();
+        });
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = [document.getElementById('cardBerries'), document.getElementById('cardChickpeas')];
+      const infoBox = document.getElementById('nutritionInfo');
+      const closeBtn = infoBox.querySelector('.close-btn');
+
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          if (infoBox.classList.contains('hidden')) {
+            infoBox.classList.remove('hidden');
+            infoBox.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            infoBox.classList.add('hidden');
+          }
+        });
+      });
+
+      closeBtn.addEventListener('click', () => {
+        infoBox.classList.add('hidden');
+      });
+    });
+
+    const form = document.getElementById('contactForm');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+
+
+      alert("Thank you for contacting us!😊🙏\n\nWe're really glad, you visited our website. Stay happy and healthy! 🌟🍀");
+
+      form.reset();
+    });
+
+  </script>
+</body>
+
+</html>

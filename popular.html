@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Popular Categories</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+    h2.section-title {
+      margin: 40px 0 30px;
+      font-weight: 700;
+      color: #2c3e50;
+    }
+    .card {
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 12px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+    .card-img-top {
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      object-fit: cover;
+      height: 250px;
+    }
+    .card-body {
+      flex-grow: 1;
+    }
+    /* Detail panel styles */
+    #detailPanel {
+      position: fixed;
+      top: 0;
+      right: -420px; /* initially off screen */
+      width: 420px;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+      overflow-y: auto;
+      transition: right 0.4s ease;
+      z-index: 1050;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    #detailPanel.open {
+      right: 0;
+    }
+    #detailPanel .close-btn {
+      align-self: flex-end;
+      background: transparent;
+      border: none;
+      font-size: 28px;
+      font-weight: 700;
+      color: #e74c3c;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    #detailPanel img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      object-fit: cover;
+      max-height: 220px;
+    }
+    #detailPanel h3 {
+      color: #27ae60;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    #detailPanel p {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      color: #34495e;
+    }
+    #detailPanel ol {
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
+    /* Scrollbar styling for detail panel */
+    #detailPanel::-webkit-scrollbar {
+      width: 8px;
+    }
+    #detailPanel::-webkit-scrollbar-thumb {
+      background: #27ae60;
+      border-radius: 4px;
+    }
+    /* Section container */
+    .category-section {
+      margin-bottom: 60px;
+    }
+    @media (max-width: 400px) {
+  #detailPanel.open {
+    right: -30px;
+}}
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="text-center mt-5 mb-4" style="color:#27ae60;">Popular Categories</h1>
+
+    <!-- Breakfast Section -->
+    <section class="category-section" id="breakfast">
+      <h2 class="section-title">Breakfast</h2>
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+
+        <div class="col">
+          <div class="card" data-category="Breakfast" data-title="Oats Porridge" data-img="https://www.sharmispassions.com/wp-content/uploads/2017/02/oatmeal-porridge1.jpg" data-ingredients="Oats, Milk, Honey, Cinnamon" data-method="1. Boil oats with milk. 2. Add honey and cinnamon. 3. Stir and serve warm.">
+            <img src="https://www.sharmispassions.com/wp-content/uploads/2017/02/oatmeal-porridge1.jpg" class="card-img-top" alt="Oats Porridge" />
+            <div class="card-body">
+              <h5 class="card-title">Oats Porridge</h5>
+              <p class="card-text">Warm and healthy oats breakfast.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card" data-category="Breakfast" data-title="Avocado Toast" data-img="https://www.dinneratthezoo.com/wp-content/uploads/2018/12/avocado-toast-14.jpg" data-ingredients="Bread, Avocado, Lemon, Salt, Pepper" data-method="1. Toast the bread. 2. Mash avocado with lemon, salt & pepper. 3. Spread on toast and serve.">
+            <img src="https://www.dinneratthezoo.com/wp-content/uploads/2018/12/avocado-toast-14.jpg" class="card-img-top" alt="Avocado Toast" />
+            <div class="card-body">
+              <h5 class="card-title">Avocado Toast</h5>
+              <p class="card-text">Simple and tasty avocado on toast.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+  <div class="card" 
+       data-category="Breakfast" 
+       data-title="Chhole Bhature" 
+       data-img="https://recipesinhindi.net/wp-content/uploads/2018/02/Chhole-Bhature14334.jpg" 
+       data-ingredients="Chickpeas, Flour, Yogurt, Spices, Oil" 
+       data-method="1. Soak and cook chickpeas with spices. 2. Prepare dough for bhature with flour and yogurt. 3. Roll dough and deep fry until puffed. 4. Serve hot with chole.">
+    <img src="https://recipesinhindi.net/wp-content/uploads/2018/02/Chhole-Bhature14334.jpg" class="card-img-top" alt="Chhole Bhature" />
+    <div class="card-body">
+      <h5 class="card-title">Chhole Bhature</h5>
+      <p class="card-text">Spicy chickpeas with fluffy fried bread.</p>
+    </div>
+  </div>
+</div>
+  <div class="col">
+  <div class="card" 
+       data-category="Breakfast" 
+       data-title="Upma" 
+       data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa9An3jEhdO77Wd7jrkfZg3SEGR_kR9Da46A&s" 
+       data-ingredients="Semolina (Rava), Water, Mustard seeds, Curry leaves, Green chilies, Ginger, Onion, Oil, Salt" 
+       data-method="1. Heat oil in a pan and add mustard seeds. 2. Once they splutter, add curry leaves, chopped green chilies, ginger, and onions. 3. Sauté until onions turn translucent. 4. Roast semolina separately until light golden. 5. Boil water in the pan with salt. 6. Slowly add roasted semolina to boiling water, stirring continuously to avoid lumps. 7. Cook until the mixture thickens and water is absorbed. 8. Garnish with chopped coriander and serve hot.">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa9An3jEhdO77Wd7jrkfZg3SEGR_kR9Da46A&s" class="card-img-top" alt="Upma" />
+    <div class="card-body">
+      <h5 class="card-title">Upma</h5>
+      <p class="card-text">Classic South Indian savory semolina breakfast.</p>
+    </div>
+  </div>
+</div>
+<div class="col">
+  <div class="card" 
+       data-category="Breakfast" 
+       data-title="Poha" 
+       data-img="https://www.theloveofspice.com/wp-content/uploads/2019/01/kanda-poha-recipe.jpg" 
+       data-ingredients="Flattened rice (Poha), Mustard seeds, Curry leaves, Green chilies, Onion, Turmeric powder, Salt, Lemon juice, Peanuts, Coriander leaves, Oil" 
+       data-method="1. Rinse poha in water and drain well. 2. Heat oil in a pan and add mustard seeds. 3. When they splutter, add curry leaves, chopped green chilies, and onions. 4. Sauté onions until soft. 5. Add turmeric powder and mix. 6. Add rinsed poha and salt. Mix gently to combine. 7. Cook for 2-3 minutes on low heat. 8. Turn off heat and add lemon juice and roasted peanuts. 9. Garnish with chopped coriander leaves and serve hot.">
+    <img src="https://www.theloveofspice.com/wp-content/uploads/2019/01/kanda-poha-recipe.jpg" class="card-img-top" alt="Poha" />
+    <div class="card-body">
+      <h5 class="card-title">Poha</h5>
+      <p class="card-text">Light and tasty flattened rice breakfast.</p>
+    </div>
+  </div>
+</div>
+<!-- Idli -->
+<div class="col">
+  <div class="card" 
+       data-category="Breakfast" 
+       data-title="Idli" 
+       data-img="https://www.indianhealthyrecipes.com/wp-content/uploads/2022/04/idli-recipe.jpg" 
+       data-ingredients="Parboiled rice, Urad dal (split black gram), Fenugreek seeds, Salt, Water" 
+       data-method="1. Soak rice and urad dal (with fenugreek seeds) separately for 4-6 hours. 2. Grind urad dal to a smooth batter, then grind rice coarsely. 3. Mix both batters, add salt, and ferment overnight (8-12 hours). 4. Grease idli molds and pour batter. 5. Steam idlis for 10-12 minutes until cooked. 6. Serve hot with chutney and sambar.">
+    <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2022/04/idli-recipe.jpg" class="card-img-top" alt="Idli" />
+    <div class="card-body">
+      <h5 class="card-title">Idli</h5>
+      <p class="card-text">Soft steamed rice cakes, perfect for breakfast.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Dosa -->
+<div class="col">
+  <div class="card" 
+       data-category="Breakfast" 
+       data-title="Dosa" 
+       data-img="https://ranveerbrar.com/wp-content/uploads/2021/02/Masala-dosa-scaled-scaled.jpg" 
+       data-ingredients="Parboiled rice, Urad dal, Fenugreek seeds, Salt, Water, Oil" 
+       data-method="1. Soak rice and urad dal (with fenugreek seeds) separately for 4-6 hours. 2. Grind urad dal to a smooth batter and rice to a coarse batter. 3. Mix both batters, add salt, and ferment overnight. 4. Heat a non-stick pan and pour a ladle of batter. 5. Spread evenly in a circular motion. 6. Drizzle oil around edges and cook until crisp. 7. Flip if desired and serve hot with chutney and sambar.">
+    <img src="https://ranveerbrar.com/wp-content/uploads/2021/02/Masala-dosa-scaled-scaled.jpg" class="card-img-top" alt="Dosa" />
+    <div class="card-body">
+      <h5 class="card-title">Dosa</h5>
+      <p class="card-text">Crispy savory pancake made from fermented batter.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Aloo Paratha -->
+<div class="col">
+  <div class="card" 
+       data-category="Breakfast" 
+       data-title="Aloo Paratha" 
+       data-img="https://www.indianhealthyrecipes.com/wp-content/uploads/2020/08/aloo-paratha-recipe.jpg" 
+       data-ingredients="Whole wheat flour, Boiled potatoes, Green chilies, Coriander, Garam masala, Salt, Ghee or oil" 
+       data-method="1. Prepare dough by kneading wheat flour with water and salt. 2. Boil and mash potatoes. 3. Mix mashed potatoes with chopped green chilies, coriander, garam masala, and salt. 4. Divide dough and filling into balls. 5. Roll out dough, place filling inside, seal and roll again. 6. Cook on hot tava with ghee/oil until golden brown on both sides. 7. Serve hot with yogurt or pickle.">
+    <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2020/08/aloo-paratha-recipe.jpg" class="card-img-top" alt="Aloo Paratha" />
+    <div class="card-body">
+      <h5 class="card-title">Aloo Paratha</h5>
+      <p class="card-text">Stuffed flatbread with spiced potato filling.</p>
+    </div>
+  </div>
+</div>
+
+        <!-- Add more breakfast cards here as needed -->
+
+      </div>
+    </section>
+
+    <!-- Lunch Section -->
+   <section class="category-section" id="Lunch">
+      <h2 class="section-title">Lunch</h2>
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col">
+
+  <div class="card" 
+       data-category="Lunch" 
+       data-title="Paneer Butter Masala" 
+       data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx7obO58mwR6VU7QAxk2wPPGAHWk0oQNNU1A&s" 
+       data-ingredients="Paneer, Butter, Tomatoes, Cream, Ginger-Garlic, Spices (turmeric, red chili, garam masala), Onion" 
+       data-method="1. Heat butter, sauté ginger-garlic and onion until golden. 2. Add pureed tomatoes and cook till oil separates. 3. Add spices and cook for 2 minutes. 4. Add paneer cubes and cream, simmer for 5 minutes. 5. Garnish with coriander and serve hot.">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx7obO58mwR6VU7QAxk2wPPGAHWk0oQNNU1A&s" class="card-img-top" alt="Paneer Butter Masala" />
+    <div class="card-body">
+      <h5 class="card-title">Paneer Butter Masala</h5>
+      <p class="card-text">Creamy and rich paneer curry with buttery tomato gravy.</p>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card" 
+       data-category="Lunch" 
+       data-title="Chole Masala" 
+       data-img="https://i.ytimg.com/vi/qcDAv_wmesQ/maxresdefault.jpg" 
+       data-ingredients="Chickpeas, Onion, Tomato, Ginger-Garlic, Spices (chole masala, turmeric, red chili), Oil" 
+       data-method="1. Soak chickpeas overnight and pressure cook till soft. 2. Heat oil, sauté onions, ginger-garlic paste until golden. 3. Add tomatoes and spices, cook till oil separates. 4. Add cooked chickpeas and water, simmer 10 minutes. 5. Garnish with coriander and serve hot.">
+    <img src="https://i.ytimg.com/vi/qcDAv_wmesQ/maxresdefault.jpg" class="card-img-top" alt="Chole Masala" />
+    <div class="card-body">
+      <h5 class="card-title">Chole Masala</h5>
+      <p class="card-text">Spicy and tangy chickpea curry, a North Indian favorite.</p>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card" 
+       data-category="Lunch" 
+       data-title="Rajma Masala" 
+       data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6tARPKfJiWtK3dj_vE0Wh9W3z5scjMGGyeA&s" 
+       data-ingredients="Kidney beans, Onion, Tomato, Ginger-Garlic, Spices (cumin, coriander, turmeric, garam masala), Oil" 
+       data-method="1. Soak rajma overnight and pressure cook until soft. 2. Heat oil, sauté onions and ginger-garlic paste. 3. Add tomatoes and spices, cook until oil separates. 4. Add cooked rajma and water, simmer for 15 minutes. 5. Garnish with coriander and serve with rice.">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6tARPKfJiWtK3dj_vE0Wh9W3z5scjMGGyeA&s" class="card-img-top" alt="Rajma Masala" />
+    <div class="card-body">
+      <h5 class="card-title">Rajma Masala</h5>
+      <p class="card-text">Hearty kidney bean curry, perfect with steamed rice.</p>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card" 
+       data-category="Lunch" 
+       data-title="Aloo Gobi" 
+       data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuXzGI9vkVxIBqEQs3pExVrrOUE7xj1uFaoQ&s" 
+       data-ingredients="Potatoes, Cauliflower, Tomato, Ginger, Green chili, Spices (turmeric, cumin, coriander), Oil" 
+       data-method="1. Heat oil, add cumin seeds and chopped green chili. 2. Add ginger and tomatoes, cook till soft. 3. Add potatoes and cauliflower with spices. 4. Cover and cook till vegetables are tender. 5. Garnish with coriander and serve.">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuXzGI9vkVxIBqEQs3pExVrrOUE7xj1uFaoQ&s" class="card-img-top" alt="Aloo Gobi" />
+    <div class="card-body">
+      <h5 class="card-title">Aloo Gobi</h5>
+      <p class="card-text">Classic dry curry of potatoes and cauliflower with spices.</p>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card" 
+       data-category="Lunch" 
+       data-title="Masoor Dal" 
+       data-img="https://www.cubesnjuliennes.com/wp-content/uploads/2020/09/Instant-Pot-Whole-Masoor-Dal-Recipe.jpg" 
+       data-ingredients="Masoor dal (red lentils), Onion, Tomato, Ginger-Garlic, Spices (turmeric, cumin), Oil" 
+       data-method="1. Rinse dal and cook with water until soft. 2. Heat oil, sauté onions and ginger-garlic paste. 3. Add tomatoes and spices, cook till oil separates. 4. Add cooked dal and simmer 5 minutes. 5. Garnish with coriander and serve with rice or roti.">
+    <img src="https://www.cubesnjuliennes.com/wp-content/uploads/2020/09/Instant-Pot-Whole-Masoor-Dal-Recipe.jpg" class="card-img-top" alt="Masoor Dal" />
+    <div class="card-body">
+      <h5 class="card-title">Masoor Dal</h5>
+      <p class="card-text">Simple and nutritious red lentil dal.</p>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card" 
+       data-category="Lunch" 
+       data-title="Baingan Bharta" 
+       data-img="https://www.indianhealthyrecipes.com/wp-content/uploads/2022/06/baingan-bharta.jpg" 
+       data-ingredients="Eggplant (baingan), Onion, Tomato, Green chili, Garlic, Spices (turmeric, cumin), Oil" 
+       data-method="1. Roast eggplant till soft and smoky, peel and mash. 2. Heat oil, sauté onions, green chili, and garlic. 3. Add tomatoes and cook till soft. 4. Add mashed eggplant and spices, mix well. 5. Cook for 5 minutes and serve hot.">
+    <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2022/06/baingan-bharta.jpg" class="card-img-top" alt="Baingan Bharta" />
+    <div class="card-body">
+      <h5 class="card-title">Baingan Bharta</h5>
+      <p class="card-text">Smoky mashed eggplant cooked with spices.</p>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card" 
+       data-category="Lunch" 
+       data-title="Vegetable Biryani" 
+       data-img="https://www.indianveggiedelight.com/wp-content/uploads/2020/04/veg-biryani-instant-pot.jpg" 
+       data-ingredients="Basmati rice, Mixed vegetables, Yogurt, Spices (garam masala, turmeric, chili), Onion, Ginger-Garlic" 
+       data-method="1. Soak rice and par-cook it. 2. Heat oil, sauté onions, ginger-garlic. 3. Add vegetables and spices, cook till soft. 4. Layer rice and vegetables in a pot. 5. Cook on low heat (dum) for 20 minutes. 6. Garnish with coriander and serve hot.">
+    <img src="https://www.indianveggiedelight.com/wp-content/uploads/2020/04/veg-biryani-instant-pot.jpg" class="card-img-top" alt="Vegetable Biryani" />
+    <div class="card-body">
+      <h5 class="card-title">Vegetable Biryani</h5>
+      <p class="card-text">Fragrant and flavorful layered rice and veggies.</p>
+    </div>
+  </div>
+</div>
+<div class="col">
+  <div class="card" 
+       data-category="Lunch" 
+       data-title="Dal Tadka" 
+       data-img="https://www.indianhealthyrecipes.com/wp-content/uploads/2021/04/dal-tadka-recipe-500x500.jpg" 
+       data-ingredients="Toor dal (split pigeon peas), Onion, Tomato, Garlic, Mustard seeds, Cumin seeds, Red chili, Asafoetida, Ghee or oil, Coriander leaves" 
+       data-method="1. Wash and pressure cook toor dal until soft. 2. Heat ghee/oil, add mustard seeds, cumin seeds, and asafoetida. 3. Add chopped garlic and onions; sauté till golden. 4. Add tomatoes and cook till soft. 5. Add red chili powder and cooked dal, simmer 5 minutes. 6. Garnish with coriander leaves and serve hot.">
+    <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2021/04/dal-tadka-recipe-500x500.jpg" class="card-img-top" alt="Dal Tadka" />
+    <div class="card-body">
+      <h5 class="card-title">Dal Tadka</h5>
+      <p class="card-text">Classic yellow lentil dal with flavorful tempering.</p>
+    </div>
+  </div>
+</div>
+
+        <!-- Add more lunch cards here -->
+
+      </div>
+    </section>
+
+    <!-- Dinner Section -->
+       <section class="category-section" id="dinner">
+  <h2 class="section-title">Dinner</h2>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+
+    <div class="col">
+      <div class="card" data-category="Dinner" data-title="Vegetable Khichdi" data-img="https://i.pinimg.com/736x/18/a8/55/18a8552c6ea7de7c2ef60931e5ea1419.jpg" data-ingredients="Rice, Moong Dal, Mixed Vegetables, Ginger, Cumin" data-method="1. Wash rice and dal. 2. Heat ghee, add cumin and ginger. 3. Add veggies, rice, dal, and water. 4. Cook until soft and mushy. 5. Serve hot with yogurt.">
+        <img src="https://i.pinimg.com/736x/18/a8/55/18a8552c6ea7de7c2ef60931e5ea1419.jpg" class="card-img-top" alt="Vegetable Khichdi" />
+        <div class="card-body">
+          <h5 class="card-title">Vegetable Khichdi</h5>
+          <p class="card-text">Comforting one-pot meal with veggies and lentils.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card" data-category="Dinner" data-title="Paneer Bhurji" data-img="https://www.sharmispassions.com/wp-content/uploads/2021/09/paneer-bhurji4.jpg" data-ingredients="Paneer, Onion, Tomato, Spices, Green Peppers" data-method="1. Crumble paneer. 2. Sauté onion, tomato, and peppers. 3. Add spices and paneer. 4. Cook for 5-7 minutes. 5. Serve with roti or bread.">
+        <img src="https://www.sharmispassions.com/wp-content/uploads/2021/09/paneer-bhurji4.jpg" class="card-img-top" alt="Paneer Bhurji" />
+        <div class="card-body">
+          <h5 class="card-title">Paneer Bhurji</h5>
+          <p class="card-text">Spiced scrambled paneer, easy and quick.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Yellow Rice -->
+<div class="col">
+  <div class="card" data-category="Dinner" data-title="Yellow Rice (Turmeric Rice)" data-img="https://i.pinimg.com/736x/8a/18/56/8a18568756112ae21c832577b58603e2.jpg" data-ingredients="Basmati Rice, Turmeric, Cumin Seeds, Onion, Garlic, Peas" data-method="1. Wash and soak rice for 20 minutes. 2. Heat oil, add cumin seeds, chopped onion and garlic, sauté till golden. 3. Add turmeric powder and peas, cook for 2 mins. 4. Add rice and water (1:2 ratio). 5. Cook covered on low heat till done. Fluff and serve hot.">
+    <img src="https://i.pinimg.com/736x/8a/18/56/8a18568756112ae21c832577b58603e2.jpg" class="card-img-top" alt="Yellow Rice" />
+    <div class="card-body">
+      <h5 class="card-title">Yellow Rice (Turmeric Rice)</h5>
+      <p class="card-text">Flavorful and colorful turmeric rice, easy to make.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Besan Chilla (Savory Gram Flour Pancakes) -->
+<div class="col">
+  <div class="card" data-category="Dinner" data-title="Besan Chilla" data-img="https://i.pinimg.com/236x/8a/8d/af/8a8dafa6a3ea7e6ccc6f1125c49755c7.jpg" data-ingredients="Besan (Gram Flour), Onion, Green Chillies, Spices, Coriander" data-method="1. Mix besan with water to make a smooth batter. 2. Add finely chopped onion, chillies, coriander, salt and spices. 3. Heat a non-stick pan, pour batter like a pancake. 4. Cook both sides until golden brown. 5. Serve hot with chutney or ketchup.">
+    <img src="https://i.pinimg.com/236x/8a/8d/af/8a8dafa6a3ea7e6ccc6f1125c49755c7.jpg" class="card-img-top" alt="Besan Chilla" />
+    <div class="card-body">
+      <h5 class="card-title">Besan Chilla</h5>
+      <p class="card-text">Quick and healthy savory pancakes made from gram flour.</p>
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
+
+
+        <!-- Add more dinner cards here -->
+
+   
+    <!-- Dessert Section -->
+    <section class="category-section" id="dessert">
+  <h2 class="section-title">Dessert</h2>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+
+    <div class="col">
+      <div class="card" data-category="Dessert" data-title="Chocolate Cake" data-img="https://static.toiimg.com/thumb/53096885.cms?imgsize=1572013&width=800&height=800" data-ingredients="Flour, Cocoa, Sugar, Eggs, Butter" data-method="1. Mix dry ingredients. 2. Add eggs and butter. 3. Bake and cool. 4. Frost with chocolate.">
+        <img src="https://static.toiimg.com/thumb/53096885.cms?imgsize=1572013&width=800&height=800" class="card-img-top" alt="Chocolate Cake" />
+        <div class="card-body">
+          <h5 class="card-title">Chocolate Cake</h5>
+          <p class="card-text">Rich and moist chocolate cake.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card" data-category="Dessert" data-title="Gulab Jamun" data-img="https://bakewithzoha.com/wp-content/uploads/2023/04/gulab-jamun-featured.jpg" data-ingredients="Milk powder, Flour, Sugar, Cardamom, Ghee" data-method="1. Make dough from milk powder and flour. 2. Shape into balls and deep fry. 3. Soak in warm sugar syrup flavored with cardamom. 4. Serve warm.">
+        <img src="https://bakewithzoha.com/wp-content/uploads/2023/04/gulab-jamun-featured.jpg" class="card-img-top" alt="Gulab Jamun" />
+        <div class="card-body">
+          <h5 class="card-title">Gulab Jamun</h5>
+          <p class="card-text">Soft, syrupy Indian sweet balls.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card" data-category="Dessert" data-title="Rasgulla" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSob3EerZuChoGLlNXmz5-YZSC4-W-fmFxXSA&s" data-ingredients="Chenna, Sugar, Water, Rose water" data-method="1. Prepare chenna (paneer). 2. Shape into balls. 3. Boil in sugar syrup till spongy. 4. Add rose water and chill before serving.">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSob3EerZuChoGLlNXmz5-YZSC4-W-fmFxXSA&s" class="card-img-top" alt="Rasgulla" />
+        <div class="card-body">
+          <h5 class="card-title">Rasgulla</h5>
+          <p class="card-text">Soft spongy balls in sweet syrup.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card" data-category="Dessert" data-title="Kheer" data-img="https://i.pinimg.com/736x/be/d1/bd/bed1bd3928c545315409ae89bf314eed.jpg" data-ingredients="Rice, Milk, Sugar, Cardamom, Nuts" data-method="1. Cook rice in milk till soft. 2. Add sugar, cardamom, and nuts. 3. Simmer till creamy. 4. Serve chilled or warm.">
+        <img src="https://i.pinimg.com/736x/be/d1/bd/bed1bd3928c545315409ae89bf314eed.jpg" class="card-img-top" alt="Kheer" />
+        <div class="card-body">
+          <h5 class="card-title">Kheer</h5>
+          <p class="card-text">Creamy Indian rice pudding dessert.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card" data-category="Dessert" data-title="Jalebi" data-img="https://i.pinimg.com/736x/92/46/72/9246726847c9c69f25c7e21b02f84c07.jpg" data-ingredients="Flour, Yogurt, Sugar, Saffron, Ghee" data-method="1. Make batter with flour and yogurt, ferment overnight. 2. Deep fry in circular shapes. 3. Soak in warm sugar syrup with saffron. 4. Serve crispy and sweet.">
+        <img src="https://i.pinimg.com/736x/92/46/72/9246726847c9c69f25c7e21b02f84c07.jpg" class="card-img-top" alt="Jalebi" />
+        <div class="card-body">
+          <h5 class="card-title">Jalebi</h5>
+          <p class="card-text">Sweet, crispy spiraled Indian dessert.</p>
+        </div>
+      </div>
+    </div>
+
+    
+
+<div class="col">
+  <div class="card" data-category="Dessert" data-title="Besan Ladoo" data-img="https://i.pinimg.com/736x/88/b8/7e/88b87e7e1a82407686de5670b7e2e899.jpg" data-ingredients="Besan (gram flour), Ghee, Sugar, Cardamom" data-method="1. Roast besan in ghee till golden and aromatic. 2. Mix in powdered sugar and cardamom. 3. Shape mixture into round ladoos. 4. Cool and serve.">
+    <img src="https://i.pinimg.com/736x/88/b8/7e/88b87e7e1a82407686de5670b7e2e899.jpg" class="card-img-top" alt="Besan Ladoo" />
+    <div class="card-body">
+      <h5 class="card-title">Besan Ladoo</h5>
+      <p class="card-text">Sweet, nutty gram flour balls.</p>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card" data-category="Dessert" data-title="Rabri" data-img="https://www.palatesdesire.com/wp-content/uploads/2021/02/rabdi@palates_Desire-1024x683.jpg" data-ingredients="Milk, Sugar, Cardamom, Pistachios, Saffron" data-method="1. Boil milk and simmer till it thickens. 2. Add sugar, cardamom, saffron. 3. Garnish with chopped pistachios. 4. Chill and serve.">
+    <img src="https://www.palatesdesire.com/wp-content/uploads/2021/02/rabdi@palates_Desire-1024x683.jpg" class="card-img-top" alt="Rabri" />
+    <div class="card-body">
+      <h5 class="card-title">Rabri</h5>
+      <p class="card-text">Rich, creamy Indian milk dessert.</p>
+    </div>
+  </div>
+</div>
+<div class="col">
+  <div class="card" data-category="Dessert" data-title="Motichoor Laddu" data-img="https://estaasweets.com/cdn/shop/files/Motichurladdu-EstaaSweets_Bangalore.webp?v=1753870975&width=1445" data-ingredients="Besan (gram flour), Sugar, Ghee, Cardamom, Orange food color" data-method="1. Prepare tiny boondi by frying gram flour batter in hot oil. 2. Soak boondi in sugar syrup. 3. Drain and mix with cardamom and ghee. 4. Shape into round laddus. 5. Let set and serve.">
+    <img src ="https://estaasweets.com/cdn/shop/files/Motichurladdu-EstaaSweets_Bangalore.webp?v=1753870975&width=1445" class="card-img-top" alt="Motichoor Laddu" />
+    <div class="card-body">
+      <h5 class="card-title">Motichoor Laddu</h5>
+      <p class="card-text">Soft, sweet, and melt-in-mouth tiny boondi laddus.</p>
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
+
+
+        <!-- Add more dessert cards here -->
+
+      </div>
+    </section>
+  </div>
+
+  <!-- Detail Panel -->
+  <div id="detailPanel" aria-live="polite" aria-atomic="true" role="region" tabindex="-1">
+    <button class="close-btn" aria-label="Close details">&times;</button>
+    <img src="" alt="" id="detailImg" />
+    <h3 id="detailTitle"></h3>
+    <p><strong>Ingredients:</strong> <span id="detailIngredients"></span></p>
+    <p><strong>Method:</strong></p>
+    <ol id="detailMethod"></ol>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const detailPanel = document.getElementById('detailPanel');
+    const closeBtn = detailPanel.querySelector('.close-btn');
+    const detailImg = document.getElementById('detailImg');
+    const detailTitle = document.getElementById('detailTitle');
+    const detailIngredients = document.getElementById('detailIngredients');
+    const detailMethod = document.getElementById('detailMethod');
+
+    function openDetail(card) {
+      const title = card.getAttribute('data-title');
+      const img = card.getAttribute('data-img');
+      const ingredients = card.getAttribute('data-ingredients');
+      const method = card.getAttribute('data-method');
+
+      detailTitle.textContent = title;
+      detailImg.src = img;
+      detailImg.alt = title;
+      detailIngredients.textContent = ingredients;
+
+      // Clear method steps first
+      detailMethod.innerHTML = '';
+      // Split method by numbers and dots, then create <li> for each step
+      const steps = method.split(/\d+\.\s*/).filter(s => s.trim().length > 0);
+      steps.forEach(step => {
+        const li = document.createElement('li');
+        li.textContent = step.trim();
+        detailMethod.appendChild(li);
+      });
+
+      detailPanel.classList.add('open');
+      detailPanel.focus();
+      detailPanel.scrollTop = 0;
+    }
+
+    function closeDetail() {
+      detailPanel.classList.remove('open');
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => openDetail(card));
+    });
+
+    closeBtn.addEventListener('click', closeDetail);
+
+    // Close detail panel on clicking outside panel
+    document.addEventListener('click', e => {
+      if (
+        detailPanel.classList.contains('open') &&
+        !detailPanel.contains(e.target) &&
+        !e.target.classList.contains('card') &&
+        !e.target.closest('.card')
+      ) {
+        closeDetail();
+      }
+    });
+
+    // Close detail panel with ESC key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && detailPanel.classList.contains('open')) {
+        closeDetail();
+      }
+    });
+  </script>
+
+</body>
+</html>
