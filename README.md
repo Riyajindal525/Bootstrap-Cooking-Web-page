@@ -1,2 +1,13 @@
 # Bootstrap-Cooking-Web-page
-This is a responsive cooking website built using Bootstrap along with some custom CSS. It features a variety of recipes and popular food categories that are easy to browse and explore. The design is clean and user-friendly to provide a pleasant experience for visitors.  
+
+A simple and responsive cooking website built with HTML and Bootstrap, styled using inline CSS inside <style> tags within the HTML files. The site showcases various recipes and popular categories for easy browsing.
+
+Features:
+
+Built entirely in HTML with Bootstrap for structure
+
+Styling done using inline CSS inside <style> tags in the HTML
+
+Clean, responsive, and user-friendly design
+
+Easy to understand and maintain code structure
