@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,6 +86,8 @@
     background-color: #e6f2e6; 
     padding: 40px 0;
   }
+ 
+
   </style>
 </head>
 
@@ -413,17 +416,61 @@
     <!-- Info Box (hidden by default) -->
     <div id="nutritionInfo" class="recipe-detail hidden">
       <button class="close-btn" aria-label="Close recipe details">&times;</button>
-      <h3>Detailed Health & Nutrition Info</h3>
-      <p><strong>1. Antioxidants in Berries:</strong> Berries like blueberries, raspberries, and blackcurrants are rich
-        in antioxidants that help reduce oxidative stress, improve heart health, and support the immune system.</p>
-      <p><strong>2. Protein in Chickpeas:</strong> Chickpeas provide a rich source of plant-based protein, fiber, and
-        essential nutrients that help in muscle repair, digestion, and maintaining energy levels.</p>
-      <p><strong>3. Vitamins & Minerals:</strong> Both berries and chickpeas contain important vitamins such as vitamin
-        C, vitamin K, and minerals like iron, magnesium, and potassium that support overall wellness.</p>
-      <p><strong>4. Dietary Fiber:</strong> The high fiber content in these foods helps regulate blood sugar, promotes
-        satiety, and supports digestive health.</p>
-      <p><strong>5. Anti-inflammatory Properties:</strong> Regular consumption may reduce inflammation and lower risk of
-        chronic diseases.</p>
+      <div class="nutrition-card" role="region" aria-labelledby="berries-heading">
+    <h4 id="berries-heading">Berries — Quick Benefits</h4>
+    <p class="lead">A low-calorie fruit packed with vitamins and antioxidants.</p>
+
+    <div class="points">
+      <div class="point">
+        <strong>Vitamin C</strong>
+        <span>Supports immunity and collagen for healthy skin.</span>
+      </div>
+
+      <div class="point">
+        <strong>Antioxidants</strong>
+        <span>Protects cells from damage and reduces inflammation.</span>
+      </div>
+
+      <div class="point">
+        <strong>Heart Support</strong>
+        <span>May improve blood vessel function and cholesterol balance.</span>
+      </div>
+
+      <div class="point">
+        <strong>Low Calorie</strong>
+        <span>A sweet snack that fills you up without many calories.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chickpeas Card -->
+  <div class="nutrition-card" role="region" aria-labelledby="chickpeas-heading">
+    <h4 id="chickpeas-heading"> Chickpeas — Quick Benefits</h4>
+    <p class="lead">A versatile legume — great for protein, fiber, and steady energy.</p>
+
+    <div class="points">
+      <div class="point">
+        <strong>High Protein</strong>
+        <span>Plant-based protein for muscle repair and strength.</span>
+      </div>
+
+      <div class="point">
+        <strong>High Fiber</strong>
+        <span>Improves digestion and helps keep you full longer.</span>
+      </div>
+
+      <div class="point">
+        <strong>Blood Sugar Friendly</strong>
+        <span>Low glycemic index supports stable energy levels.</span>
+      </div>
+
+      <div class="point">
+        <strong>Minerals</strong>
+        <span>Provides iron, folate, magnesium and supports overall health.</span>
+      </div>
+    </div>
+  </div>
+  
     </div>
   </div>
 
@@ -930,4 +977,3 @@
 
 
 </html>
-
